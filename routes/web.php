@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('master');
 });
+Route::get('/card', 'App\Http\Controllers\StoreController@card');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
