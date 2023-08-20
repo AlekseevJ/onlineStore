@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('master');
 });
-Route::get('/card', 'App\Http\Controllers\StoreController@card');
-
+Route::resource('item', ItemController::class);
+Route::get('/category', [StoreController::class, 'category']);
+Route::get('/{categoryin}', [StoreController::class, 'categoryin'])->name('categoryin');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
