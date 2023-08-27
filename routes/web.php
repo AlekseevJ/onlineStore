@@ -3,6 +3,7 @@
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\BasketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('master');
 });
+Route::get('/basket', [BasketController::class, 'basket'])->name('basket');
+Route::post('/basket/add/{id}', [BasketController::class, 'basketadd'])->name('basketadd');
+
+Route::get('/test', [StoreController::class, 'test'])->name('test');
 
 Route::resource('item', ItemController::class);
 Route::get('/category', [StoreController::class, 'category']);

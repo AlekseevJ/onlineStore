@@ -12,4 +12,7 @@ class Kategory extends Model
     public $created_at = false;
     
     protected $fillable = ['id','title','desc','image'];
+    public function items(){
+        return $this->hasMany(Item::class);
+    }
 }

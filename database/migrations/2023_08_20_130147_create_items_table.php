@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id')->nullable();
+            $table->unsignedBigInteger('kategory_id')->nullable();
+            $table->foreign('kategory_id')->references('id')->on('kategories')->onDelete('cascade');
             $table->string('name');
             $table->string('price');
             $table->text('desc');
