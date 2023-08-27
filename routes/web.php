@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('master');
 });
+
 Route::resource('item', ItemController::class);
 Route::get('/category', [StoreController::class, 'category']);
 Route::get('/{categoryin}', [StoreController::class, 'categoryin'])->name('categoryin');

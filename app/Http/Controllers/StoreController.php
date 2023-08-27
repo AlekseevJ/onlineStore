@@ -14,7 +14,8 @@ class StoreController extends Controller
     public function categoryin($url)
     {
         $category = Kategory::where('url', $url)->first();
-        return view('category', compact('category'));
+        dd($category);
+        return view('katsort', compact('category'));
     }
     
 }

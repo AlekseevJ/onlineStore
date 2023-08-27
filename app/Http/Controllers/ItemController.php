@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
-
+use App\Models\Kategory;
 class ItemController extends Controller
 {
     /**
@@ -12,8 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $item = Item::latest()->paginate(102);
-        return view('item', compact('item'));
+        $item = Item::get();
+        return view('item.index', compact('item'));
     }
 
     /**
@@ -21,7 +21,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+       return view('item.create');
     }
 
     /**
@@ -29,7 +29,9 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Item::create($request->all());
+        return redirect()->route('item.index');
+
     }
 
     /**
@@ -37,7 +39,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+      
+        return view('item.show', compact('item'));
     }
 
     /**
@@ -45,7 +48,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $hkategory = Kategory::get();
+        return view('item.edit', compact('item','hkategory'));
     }
 
     /**
@@ -53,7 +57,16 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $updt = Item::find($item->id);
+        $updt->update(
+            ['category_id'=>$request->category_id,
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'desc'=>$request->desc,
+            'image'=>$request->image,
+
+            ]);
+       return redirect()->route('item.show',$item->id)->with('success','Изменения сохранены!');
     }
 
     /**
