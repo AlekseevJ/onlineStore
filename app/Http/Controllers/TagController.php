@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\ProductCollection;
+use App\Models\Tag;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
+use App\Http\Resources\TagResource;
+use App\Http\Resources\TagCollection;
 
-class ProductController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return new ProductCollection(Product::paginate());
+        return new TagCollection(Tag::paginate());
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(StoreTagRequest $request)
     {
         //
     }
@@ -37,15 +37,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Tag $tag)
     {
-        return new ProductResource($product) ;
+        return new TagResource($tag);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -53,7 +53,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
         //
     }
@@ -61,7 +61,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Tag $tag)
     {
         //
     }
