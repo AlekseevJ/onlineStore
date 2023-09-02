@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
+        //   $table->foreign('user_id')->references('id')->on('users');
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('cart_id')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+           $table->foreignid('user_id')->constrained();
+           $table->string('token_api')->unique();
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('tokens');
     }
 };
