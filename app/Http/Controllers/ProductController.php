@@ -6,62 +6,42 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\Color;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-       return DB::select('select * from users');
+       return $hi = DB::select('select * from products');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(StoreProductRequest $request)
-    {
-        //
+    {   
+        if(!$request->name || !$request->price ){
+            
+            return'need [name => ??, price=> etc]';
+        };
+        DB::table('products')->insert([
+           'name'=> $request->name,
+           'price'=>$request->price,
+           'desc'=>$request->desc,
+           'color_id'=>$request->color_id,
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        Product::whereId($product)->update($request->all());
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-        //
+    public function destroy(Request $request)
+    {  
+       $prod = Product::find($request->id);
+       $prod->delete();
     }
 }

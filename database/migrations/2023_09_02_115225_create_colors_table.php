@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->boolean('status')->nullable();
             $table->string('color');
         });
     }

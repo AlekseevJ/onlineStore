@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('price');
             $table->integer('color_id');
             $table->foreign('color_id')->references('id')->on('colors');
-            $table->text('desc');
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }
