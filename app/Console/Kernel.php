@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -12,7 +13,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function(){
+            DB::table('products')->insert([
+                'name'=> '111',
+                'price'=>'1131',
+                'desc'=>'10303',
+                'color_id'=>1,
+             ]);
+        })->everyFiveSeconds();//->hourly();
     }
 
     /**

@@ -8,13 +8,17 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Color;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cache;
 class ProductController extends Controller
 {
    
     public function index()
-    {
-       return $hi = DB::select('select * from products');
+    {  
+       if(empty(Cache::get('key'))){$hi = DB::select('select * from products');
+        Cache::put('key', $hi, 600);}
+       
+       return  Cache::get('key');
+      
     }
 
   
