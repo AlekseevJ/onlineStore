@@ -22,7 +22,18 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=> 'required',
+            'price'=> 'required',
+            'color'=> 'required',
+            
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'name is requer.',
+            'price.required'  => 'input digit price',
+            'color' => 'choose name of color, or select color id',
         ];
     }
 }

@@ -31,7 +31,7 @@ class Authenticate extends Middleware
              }
          }
         
-       if( $request->input('token')=='admin' || $request->query('token')=='admin'){
+       if( $request->input('token')=='admin' || $request->query('token')=='admin'|| $request->header('token')=='admin'){
         return;
        }
        
