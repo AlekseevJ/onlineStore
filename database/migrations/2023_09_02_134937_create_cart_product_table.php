@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cart_id');
-            $table->unsignedBigInteger('product_id');
+           // $table->unsignedBigInteger('cart_id');
+            $table->foreignId('cart_id')->constrained();
+           // $table->unsignedBigInteger('product_id');
+            $table->foreignId('product_id')->constrained();
         });
     }
 

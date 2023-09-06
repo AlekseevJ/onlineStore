@@ -22,7 +22,19 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id' => 'required',
+            'name'=> 'required',
+            'price'=> 'required',
+            
+            
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'name is requer.',
+            'price.required'  => 'input digit price',
+            'color' => 'choose name of color, or select color id',
         ];
     }
 }

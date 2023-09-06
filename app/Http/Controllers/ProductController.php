@@ -9,9 +9,19 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Color;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use App\Repositories\Interfaces\ProductRepositoryInterface;
 class ProductController extends Controller
 {
-   
+    private $productRepository;
+         
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+    
+    public function repoindex(){
+      return $this->productRepository->all();
+    }
     public function index()
     {  
       // if(empty(Cache::get('key'))){$hi = Product::all();
@@ -49,15 +59,15 @@ class ProductController extends Controller
       //     'desc'=>$request->desc,
       //     'color_id'=>$request->color_id,
       //  ]);
+     // dd(!empty(Color::where('color',$request->input('color'))));
        if(!($request->name)){return response('введите name price color desc');}
        if(!empty(Color::where('color',$request->input('color'))->firstOr(function(){}))){
-        $col = Color::where('color',$request->input('color'));
-        
+        $col = Color::where('color',$request->input('color'))->first()->id;       
         $newpr = Product::create([
             'name'=>$request->name,
             'price'=>$request->price,
             'desc'=>$request->desc,
-            'color_id'=> $col->first()->id ,
+            'color_id'=> $col,
           //  'color_id'=>$col,
         ]);
        }else{
@@ -77,9 +87,18 @@ class ProductController extends Controller
     }
 
 
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        Product::whereId($product)->update($request->all());
+    public function update(UpdateProductRequest $request)
+    { if(!$request->input('color')){return 'Выбрать цвет по ID из'. Color::all('id','color');}
+      Product::whereId($request->id)->update([
+        'name'=>$request->name,
+        'price'=>$request->price,
+        'desc'=>$request->desc,
+        'color_id'=> $request->input('color') ,
+        ]
+        
+    );
+      $product = Product::find($request->id);
+      return response()->json($product);
 
     }
 

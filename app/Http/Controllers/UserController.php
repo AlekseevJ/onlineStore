@@ -20,4 +20,15 @@ class UserController extends Controller
         return 'Ваш токен - '.$token[0]['token_api'] ;
        
     }
+    public function token(Request $request){
+       if(!$request->input('name')||!$request->input('password')){return'нужно ввести в тело name и password';}
+       $us = User::where('name', $request->input('name'))->first();
+       if(!$us){return'пользователя не существует';}elseif(!($us->password == $request->input('password'))){
+        return'неверный пароль';
+       }
+       return $us->token()->get('token_api');
+       
+
+      // dd(!($us->password == $request->input('password')));
+    }
 }
