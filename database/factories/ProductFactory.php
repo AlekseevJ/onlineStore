@@ -16,9 +16,13 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    {   
+        $namepull = ['Iphone','Samsung','Nokia','INOE','RealMe','Xiaomu','BQ','Infinix','Motorola','POCO'];
+        $key = array_rand($namepull);
+        $num= random_int(0,10);
+        $facker = $namepull[$key].' '.$num; 
         return [
-            'name'=>$this->faker->name(),
+            'name'=>$facker,
             'price'=>$this->faker->randomDigit()*500+450,
             'color_id'=>Color::factory(),
             'desc'=>$this->faker->text(120),

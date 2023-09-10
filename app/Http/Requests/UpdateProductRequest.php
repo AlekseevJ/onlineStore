@@ -25,13 +25,14 @@ class UpdateProductRequest extends FormRequest
             'id' => 'required',
             'name'=> 'required',
             'price'=> 'required',
-            
+            'color'=> 'required',
             
         ];
     }
     public function messages()
     {
         return [
+            'id.required' => 'need id',
             'name.required' => 'name is requer.',
             'price.required'  => 'input digit price',
             'color' => 'choose name of color, or select color id',

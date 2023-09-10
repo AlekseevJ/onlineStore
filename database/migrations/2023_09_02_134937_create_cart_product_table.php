@@ -16,7 +16,7 @@ return new class extends Migration
            // $table->unsignedBigInteger('cart_id');
             $table->foreignId('cart_id')->constrained();
            // $table->unsignedBigInteger('product_id');
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

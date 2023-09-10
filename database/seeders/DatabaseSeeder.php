@@ -22,11 +22,6 @@ class DatabaseSeeder extends Seeder
     {
 
       Color::factory(3)->has(Product::factory()->count(10))->create();
-     $tok = User::create( [
-      'name' => fake()->name(),
-      'email' => fake()->unique()->safeEmail(),
-      'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-  ]);
-     $tok->token()->create(['token_api'=>Str::random(30)]);
+     
     }
 }

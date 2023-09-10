@@ -20,7 +20,7 @@ class StoreProductRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
-    {
+    { 
         return [
             'name'=> 'required',
             'price'=> 'required',
@@ -31,9 +31,9 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'name is requer.',
-            'price.required'  => 'input digit price',
-            'color' => 'choose name of color, or select color id',
+            'name.required' => 'name is require.',
+            'price.required'  => 'input a digit price',
+            'color' => 'input a color',
         ];
     }
 }
