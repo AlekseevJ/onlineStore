@@ -27,7 +27,7 @@ class User extends Authenticatable
         return $this->hasOne(Token::class);
     }
 
-    public function Carts(){
+    public function carts(){
         return $this->hasMany(Cart::class);
     }
     /**

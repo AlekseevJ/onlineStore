@@ -27,9 +27,12 @@ class ProductController extends Controller
       // if(empty(Cache::get('key'))){$hi = Product::all();
       // Cache::put('key', $hi, 600);}
       // $fath = Cache::get('key');
+      
     if(!(Cache::get('key')))
-    {   $hi = Product::all();
-       $mas = array();$pul = array();
+    
+    {   
+      $pul = array();$hi = Product::all();
+       $mas = array();
        foreach($hi as $item){
         $mas = [ 
             'id' => $item->id,
@@ -40,7 +43,7 @@ class ProductController extends Controller
         ];
         array_push($pul,$mas);
        }
-    }
+    }   
         Cache::put('key', $pul, 600);
         $pul = Cache::get('key');
       return response()->json($pul) ;

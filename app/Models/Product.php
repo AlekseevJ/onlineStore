@@ -9,13 +9,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','desc','price','color_id'];
+
     public function color(){
         return $this->belongsTo(Color::class);
-        
     }
-
     public function carts(){
         return $this->belongsToMany(Cart::class);
     }
-    protected $fillable = ['name','desc','price','color_id'];
+    
 }

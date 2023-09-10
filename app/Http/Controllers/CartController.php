@@ -18,21 +18,48 @@ class CartController extends Controller
     {
        $tok = !empty($request->input('token')) ? $request->input('token') : $request->header('token'); 
        $tok = Token::where('token_api',$tok)->first()  ;  // ->user()->get('id'); // id mb
+       $us = $tok->user;  
+       $cart= Cart::firstOrCreate(['status'=>'false']);
+       $us->carts()->save($cart);
+       $cart->products()->attach($request->input('id'));
+      return $cart->products()->get();
+    }
+    public function showmybasket(Request $request)
+    {
+       $tok = !empty($request->input('token')) ? $request->input('token') : $request->header('token'); 
+       $tok = Token::where('token_api',$tok)->first();
        $us = $tok->user;
-       if(!empty($us->cart_id)){ dd(1);
-        $us->update(['cart_id'=> Cart::create(),]);
-       }
-       $produ = Product::find($request->input('id'));
-      
-      $cart = $us;//->products()->attach($produ);//->products()->attach($produ);
-      dd($cart);
-      $an = $cart->products();
-      dd($an);
+
+       return $us->carts()->where('status','=','false')->first()->products()->get();
 
     }
-    public function showmybasket()
-    {
-        //
+
+    public function pay(Request $request){
+       $tok = !empty($request->input('token')) ? $request->input('token') : $request->header('token'); 
+       $tok = Token::where('token_api',$tok)->first();
+       $us = $tok->user;
+
+       $pcrt =$us->carts()->where('status', false)->first();
+       $pr =$pcrt->products()->get();
+       $itogo=null;
+       foreach($pr as $val){
+        $itogo+= $val->price;
+       };
+       $us->carts()->where('status', false)->first()->update(['status'=>true]);
+       return response('Оплачено '.$itogo.' $', $status = 203);
+    }
+
+    public function showhistory(Request $request){
+       $tok = !empty($request->input('token')) ? $request->input('token') : $request->header('token'); 
+       $tok = Token::where('token_api',$tok)->first();
+       $us = $tok->user;
+      
+       $carts = $us->carts()->where('status',true)->get();
+       $pul = array();
+       foreach($carts as $val){
+         $pul[] = $val->products()->get();
+       }
+       return $pul;
     }
 
 }
