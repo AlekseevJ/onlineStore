@@ -36,6 +36,9 @@ class Authenticate extends Middleware
        }
        
         $this->unauthenticated($request, $guards);
-  
+}
+protected function redirectTo(Request $request): string
+{
+    return route('login');
 }
 }

@@ -27,8 +27,9 @@ class UserController extends Controller
         return'неверный пароль';
        }
        return $us->token()->get('token_api');
-       
 
-      // dd(!($us->password == $request->input('password')));
+    }
+    public function noToken(){
+        return 'нет токена';
     }
 }

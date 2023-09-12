@@ -1,0 +1,379 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "AlekseevStore",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/basket/add": {
+            "post": {
+                "tags": [
+                    "Cart"
+                ],
+                "description": "Добавить товар в корзину",
+                "operationId": "0d5b380f12b21d64f84c2d1fe5f36b5a",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/basket/showmybasket": {
+            "get": {
+                "tags": [
+                    "Cart"
+                ],
+                "description": "Показать текущую корзину",
+                "operationId": "5f08e5cf975d49cb56d3bb6bef596d49",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/basket/pay": {
+            "get": {
+                "tags": [
+                    "Cart"
+                ],
+                "description": "Оплатить товары в корзине",
+                "operationId": "615ebbe55bf08f500cdb86aa3ae22fd5",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/basket/showhistory": {
+            "get": {
+                "tags": [
+                    "Cart"
+                ],
+                "description": "Посмотреть историю покупок",
+                "operationId": "14c17cfdb6805ae7550ac7a7a7bbf11b",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/product": {
+            "get": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Получить все продукты",
+                "operationId": "5cc57bec35d0f2045983cc8dcd00eccd",
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Создать новый продукт",
+                "operationId": "1d0b0d8724685b7b8f9d87f403bfc4df",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "color"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Iphone 4s"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1002"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Black"
+                                    },
+                                    "desc": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "The small phone with the camera"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/product/put": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Обновить существующий продукт",
+                "operationId": "94b05c2776cad48bb1d26e7f66facb52",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "name",
+                                    "price",
+                                    "color"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "3"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Iphone 4s"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1002"
+                                    },
+                                    "color": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Black"
+                                    },
+                                    "desc": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "The small phone with the camera"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/product/delete": {
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "description": "Удалить продукт по ID",
+                "operationId": "7b2e0aee416f4904c7cb49df4e9a2283",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The data"
+                    }
+                }
+            }
+        },
+        "/api/getwet": {
+            "get": {
+                "tags": [
+                    "Yandex Wether API"
+                ],
+                "description": "Получить погоду",
+                "operationId": "efdbc6295360a02a368b9a6d2a26d689",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "data"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "title": "Product",
+                "description": "Модель Product",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "Продукта id",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Наименование продукта",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Iphone 4s"
+                    },
+                    "desc": {
+                        "title": "desc",
+                        "description": "Описание продукта",
+                        "type": "string",
+                        "format": "string",
+                        "example": "Смартфон с камерой ночного видения"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "цена",
+                        "format": "int",
+                        "example": "25550"
+                    },
+                    "color_id": {
+                        "title": "color_id",
+                        "description": "Отношение с colors",
+                        "format": "int",
+                        "example": "1"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Product"
+                }
+            }
+        }
+    }
+}

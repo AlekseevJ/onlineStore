@@ -13,17 +13,21 @@ Route::middleware('auth')->group(function(){
          Route::post('/',[ProductController::class,'store']);
          Route::put('/',[ProductController::class,'update']);
          Route::delete('/',[ProductController::class,'destroy']);
+
+         Route::post('/put',[ProductController::class,'updateForSwagger']);
+         Route::post('/delete',[ProductController::class,'destroySwag']);
     });
     Route::prefix('basket')->group(function(){
-    Route::post('/add', [CartController::class, 'add']);
-    Route::get('/showmybasket',[CartController::class,'showmybasket']);
-    Route::post('/pay',[CartController::class,'pay']);
-    Route::get('/showhistory',[CartController::class,'showhistory']);
+        Route::post('/add', [CartController::class, 'add']);
+        Route::get('/showmybasket',[CartController::class,'showmybasket']);
+        Route::get('/pay',[CartController::class,'pay']);
+        Route::get('/showhistory',[CartController::class,'showhistory']);
     });
     Route::get('/getwet',[WetherController::class,'get']);
 });
 Route::post('/register',[UserController::class,'create']);
 Route::post('/token', [UserController::class,'token']);
+Route::get('/', [UserController::class,'noToken'])->name('login');
 
 
 

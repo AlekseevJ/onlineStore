@@ -29,7 +29,8 @@ class ProductRepository implements ProductRepositoryInterface
             'desc' => $request->desc,
             'color_id' => $col,
         ]);
-        return $item;
+        $itemWithJs = ["id" => $item->id, "name" => $item->name, "property" => ["price" => $item->price, "desc" => $item->desc, "color" => $item->color()->get('color')]];
+        return $itemWithJs;
     }
     public function update($request)
     {
@@ -42,7 +43,8 @@ class ProductRepository implements ProductRepositoryInterface
             ]
         );
         $item = Product::find($request->id);
-        return $item;
+        $itemWithJ = ["id" => $item->id, "name" => $item->name, "property" => ["price" => $item->price, "desc" => $item->desc, "color" => $item->color()->get('color')]];
+        return $itemWithJ;
     }
     public function delete($request)
     {
@@ -73,10 +75,9 @@ class ProductRepository implements ProductRepositoryInterface
         $cart->update(['status' => true]);
         return;
     }
-    
+
     public function getAllEndedCart($us)
     {
         return $us->carts()->where('status', true)->get();
     }
-    
 }
